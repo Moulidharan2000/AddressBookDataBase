@@ -1,0 +1,166 @@
+#UC3 Insert new contatct in AddressBook
+
+ MySQL  localhost:3306 ssl  addressbookservice  SQL > INSERT INTO addressbook(firstName,lasteName,mobileNumber,email,city,state,zip) Values
+                                                   -> ('Mouli','dharan','9025636601','md2000@gmail.com','Chennai','TamilNadu',638311),
+                                                   -> ('Hari','haran','9874563210','hh2002@gmail.com','Mumbai','Maharastra',654789),
+                                                   -> ('Daniel','jack','9632587410','JD2020@gmail.com','Bangalore','Karnataka',632541);
+Query OK, 3 rows affected (0.1402 sec)
+
+Records: 3  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  addressbookservice  SQL > select * from addressbook;
++-----------+-----------+--------------+------------------+-----------+------------+--------+
+| firstName | lasteName | mobileNumber | email            | city      | state      | zip    |
++-----------+-----------+--------------+------------------+-----------+------------+--------+
+| Daniel    | jack      | 9632587410   | JD2020@gmail.com | Bangalore | Karnataka  | 632541 |
+| Hari      | haran     | 9874563210   | hh2002@gmail.com | Mumbai    | Maharastra | 654789 |
+| Mouli     | dharan    | 9025636601   | md2000@gmail.com | Chennai   | TamilNadu  | 638311 |
++-----------+-----------+--------------+------------------+-----------+------------+--------+
+3 rows in set (0.0101 sec)
+
+#UC4 Edit Existing Contact Person Details using their Name
+
+ MySQL  localhost:3306 ssl  addressbookservice  SQL > select * from addressbook;
++-----------+-----------+--------------+------------------+-----------+------------+--------+
+| firstName | lasteName | mobileNumber | email            | city      | state      | zip    |
++-----------+-----------+--------------+------------------+-----------+------------+--------+
+| Daniel    | jack      | 9632587410   | JD2020@gmail.com | Bangalore | Karnataka  | 632541 |
+| Hari      | haran     | 9874563210   | hh2002@gmail.com | Mumbai    | Maharastra | 654789 |
+| Mouli     | dharan    | 9025636601   | md2000@gmail.com | Chennai   | TamilNadu  | 638311 |
++-----------+-----------+--------------+------------------+-----------+------------+--------+
+3 rows in set (0.0101 sec)
+
+ MySQL  localhost:3306 ssl  addressbookservice  SQL > UPDATE addressbook set mobileNumber = "8794561231" where firstName = "Daniel";
+Query OK, 1 row affected (0.0537 sec)
+
+Rows matched: 1  Changed: 1  Warnings: 0
+ MySQL  localhost:3306 ssl  addressbookservice  SQL > UPDATE addressbook set zip = "123654" where firstName="Daniel";
+Query OK, 1 row affected (0.0370 sec)
+
+Rows matched: 1  Changed: 1  Warnings: 0
+ MySQL  localhost:3306 ssl  addressbookservice  SQL > UPDATE addressbook set state = "Kerela" where firstName = "Hari";
+Query OK, 1 row affected (0.0394 sec)
+
+Rows matched: 1  Changed: 1  Warnings: 0
+ MySQL  localhost:3306 ssl  addressbookservice  SQL > UPDATE addressbook set city = "Erode" where firstName = "Mouli";
+Query OK, 1 row affected (0.0393 sec)
+
+Rows matched: 1  Changed: 1  Warnings: 0
+ MySQL  localhost:3306 ssl  addressbookservice  SQL > select * from addressbook;
++-----------+-----------+--------------+------------------+-----------+-----------+--------+
+| firstName | lasteName | mobileNumber | email            | city      | state     | zip    |
++-----------+-----------+--------------+------------------+-----------+-----------+--------+
+| Daniel    | jack      | 8794561231   | JD2020@gmail.com | Bangalore | Karnataka | 123654 |
+| Hari      | haran     | 9874563210   | hh2002@gmail.com | Mumbai    | Kerela    | 654789 |
+| Mouli     | dharan    | 9025636601   | md2000@gmail.com | Erode     | TamilNadu | 638311 |
++-----------+-----------+--------------+------------------+-----------+-----------+--------+
+3 rows in set (0.0006 sec)
+
+ #UC5 Delete a Person Using Person's Name
+
+ MySQL  localhost:3306 ssl  addressbookservice  SQL > DELETE from addressbook where firstname = "Daniel";
+Query OK, 1 row affected (0.0511 sec)
+ MySQL  localhost:3306 ssl  addressbookservice  SQL > select * from addressbook;
++-----------+-----------+--------------+------------------+--------+-----------+--------+
+| firstName | lasteName | mobileNumber | email            | city   | state     | zip    |
++-----------+-----------+--------------+------------------+--------+-----------+--------+
+| Hari      | haran     | 9874563210   | hh2002@gmail.com | Mumbai | Kerela    | 654789 |
+| Mouli     | dharan    | 9025636601   | md2000@gmail.com | Erode  | TamilNadu | 638311 |
++-----------+-----------+--------------+------------------+--------+-----------+--------+
+2 rows in set (0.0006 sec)
+
+ #UC6 Retrieve Person Belonging to a City or State in AddressBook
+
+ MySQL  localhost:3306 ssl  addressbookservice  SQL > INSERT INTO addressbook(firstName,lasteName,mobileNumber,email,city,state,zip) VALUE ('Daniel','jack','8794561231','jd2020@gmail.com','Bangalore','Karnataka',123654);
+Query OK, 1 row affected (0.0394 sec)
+ MySQL  localhost:3306 ssl  addressbookservice  SQL > select * from addressbook;
++-----------+-----------+--------------+------------------+-----------+-----------+--------+
+| firstName | lasteName | mobileNumber | email            | city      | state     | zip    |
++-----------+-----------+--------------+------------------+-----------+-----------+--------+
+| Daniel    | jack      | 8794561231   | jd2020@gmail.com | Bangalore | Karnataka | 123654 |
+| Hari      | haran     | 9874563210   | hh2002@gmail.com | Mumbai    | Kerela    | 654789 |
+| Mouli     | dharan    | 9025636601   | md2000@gmail.com | Erode     | TamilNadu | 638311 |
++-----------+-----------+--------------+------------------+-----------+-----------+--------+
+3 rows in set (0.0006 sec)
+ MySQL  localhost:3306 ssl  addressbookservice  SQL > select * from addressbook where city = "Bangalore";
++-----------+-----------+--------------+------------------+-----------+-----------+--------+
+| firstName | lasteName | mobileNumber | email            | city      | state     | zip    |
++-----------+-----------+--------------+------------------+-----------+-----------+--------+
+| Daniel    | jack      | 8794561231   | jd2020@gmail.com | Bangalore | Karnataka | 123654 |
++-----------+-----------+--------------+------------------+-----------+-----------+--------+
+1 row in set (0.0006 sec)
+
+ #UC7 Understatnd the Size of the AddressBook by City & State
+
+ MySQL  localhost:3306 ssl  addressbookservice  SQL > SELECT city,COUNT(city) from addressbook group by city;
++-----------+-------------+
+| city      | COUNT(city) |
++-----------+-------------+
+| Bangalore |           1 |
+| Mumbai    |           1 |
+| Erode     |           1 |
++-----------+-------------+
+3 rows in set (0.0006 sec)
+ 
+ MySQL  localhost:3306 ssl  addressbookservice  SQL > SELECT state,COUNT(state) from addressbook group by state;
++-----------+--------------+
+| state     | COUNT(state) |
++-----------+--------------+
+| Karnataka |            1 |
+| Kerela    |            1 |
+| TamilNadu |            1 |
++-----------+--------------+
+3 rows in set (0.0006 sec)
+
+ #UC8 Retrieve Entries Sorted Alphabetically by Person's Name for a Given City
+
+ MySQL  localhost:3306 ssl  addressbookservice  SQL > Select * from addressbook ORDER BY firstName, lasteName;
++-----------+-----------+--------------+------------------+-----------+-----------+--------+
+| firstName | lasteName | mobileNumber | email            | city      | state     | zip    |
++-----------+-----------+--------------+------------------+-----------+-----------+--------+
+| Daniel    | jack      | 8794561231   | jd2020@gmail.com | Bangalore | Karnataka | 123654 |
+| Hari      | haran     | 9874563210   | hh2002@gmail.com | Mumbai    | Kerela    | 654789 |
+| Mouli     | dharan    | 9025636601   | md2000@gmail.com | Erode     | TamilNadu | 638311 |
++-----------+-----------+--------------+------------------+-----------+-----------+--------+
+3 rows in set (0.0008 sec)
+
+ #UC9 Identify Each AddressBook with name and Type
+
+ MySQL  localhost:3306 ssl  addressbookservice  SQL > alter table addressbook add type varchar(15) after lasteName;
+Query OK, 0 rows affected (0.2731 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  addressbookservice  SQL > describe addressbook;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| firstName    | varchar(50) | NO   | PRI | NULL    |       |
+| lasteName    | varchar(50) | NO   |     | NULL    |       |
+| type         | varchar(15) | YES  |     | NULL    |       |
+| mobileNumber | varchar(20) | NO   |     | NULL    |       |
+| email        | varchar(50) | NO   |     | NULL    |       |
+| city         | varchar(50) | NO   |     | NULL    |       |
+| state        | varchar(50) | YES  |     | NULL    |       |
+| zip          | mediumtext  | NO   |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+8 rows in set (0.0018 sec)
+ MySQL  localhost:3306 ssl  addressbookservice  SQL > update addressbook set type ='Friend' where firstname = 'Daniel';
+Query OK, 1 row affected (0.0172 sec)
+
+Rows matched: 1  Changed: 1  Warnings: 0
+ MySQL  localhost:3306 ssl  addressbookservice  SQL > update addressbook set type ='Family' where firstname = 'Hari';
+Query OK, 1 row affected (0.0247 sec)
+
+Rows matched: 1  Changed: 1  Warnings: 0
+ MySQL  localhost:3306 ssl  addressbookservice  SQL > update addressbook set type ='Profession' where firstname = 'Mouli';
+Query OK, 1 row affected (0.0180 sec)
+
+Rows matched: 1  Changed: 1  Warnings: 0
+ MySQL  localhost:3306 ssl  addressbookservice  SQL > select * from addressbook;
++-----------+-----------+------------+--------------+------------------+-----------+-----------+--------+
+| firstName | lasteName | type       | mobileNumber | email            | city      | state     | zip    |
++-----------+-----------+------------+--------------+------------------+-----------+-----------+--------+
+| Daniel    | jack      | Friend     | 8794561231   | jd2020@gmail.com | Bangalore | Karnataka | 123654 |
+| Hari      | haran     | Family     | 9874563210   | hh2002@gmail.com | Mumbai    | Kerela    | 654789 |
+| Mouli     | dharan    | Profession | 9025636601   | md2000@gmail.com | Erode     | TamilNadu | 638311 |
++-----------+-----------+------------+--------------+------------------+-----------+-----------+--------+
+3 rows in set (0.0006 sec)
