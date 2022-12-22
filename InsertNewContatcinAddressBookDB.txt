@@ -1,0 +1,18 @@
+ #UC3 Insert new contatct in AddressBook
+
+ MySQL  localhost:3306 ssl  addressbookservice  SQL > INSERT INTO addressbook(firstName,lasteName,mobileNumber,email,city,state,zip) Values
+                                                   -> ('Mouli','dharan','9025636601','md2000@gmail.com','Chennai','TamilNadu',638311),
+                                                   -> ('Hari','haran','9874563210','hh2002@gmail.com','Mumbai','Maharastra',654789),
+                                                   -> ('Daniel','jack','9632587410','JD2020@gmail.com','Bangalore','Karnataka',632541);
+Query OK, 3 rows affected (0.1402 sec)
+
+Records: 3  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  addressbookservice  SQL > select * from addressbook;
++-----------+-----------+--------------+------------------+-----------+------------+--------+
+| firstName | lasteName | mobileNumber | email            | city      | state      | zip    |
++-----------+-----------+--------------+------------------+-----------+------------+--------+
+| Daniel    | jack      | 9632587410   | JD2020@gmail.com | Bangalore | Karnataka  | 632541 |
+| Hari      | haran     | 9874563210   | hh2002@gmail.com | Mumbai    | Maharastra | 654789 |
+| Mouli     | dharan    | 9025636601   | md2000@gmail.com | Chennai   | TamilNadu  | 638311 |
++-----------+-----------+--------------+------------------+-----------+------------+--------+
+3 rows in set (0.0101 sec)
